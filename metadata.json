@@ -1,0 +1,6 @@
+{
+  "name": "Crusher ERP",
+  "description": "Complete Crusher Plant Management System for Pakistan with offline-capable Firestore sync, PKR sales & purchase invoices, stock control, customer/supplier ledgers, expenses, and financial reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

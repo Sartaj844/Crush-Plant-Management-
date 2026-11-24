@@ -1,0 +1,304 @@
+{
+  "entities": {
+    "BusinessSettings": {
+      "title": "BusinessSettings",
+      "description": "Crusher plant business configuration, numbering sequences, and financial preferences.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "businessName": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "openingCashBalance": { "type": "number" },
+        "financialYear": { "type": "string" },
+        "defaultUnit": { "type": "string" },
+        "invoicePrefix": { "type": "string" },
+        "nextInvoiceSeq": { "type": "integer" },
+        "purchasePrefix": { "type": "string" },
+        "nextPurchaseSeq": { "type": "integer" },
+        "allowNegativeStock": { "type": "boolean" },
+        "defaultMaterialsSeeded": { "type": "boolean" },
+        "logoLocalPath": { "type": "string" },
+        "operatorName": { "type": "string" },
+        "requireAdminPin": { "type": "boolean" },
+        "adminPin": { "type": "string" },
+        "languageCode": { "type": "string", "enum": ["en", "ur"] },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()" }
+      },
+      "required": [
+        "userId", "businessName", "address", "phone", "openingCashBalance",
+        "financialYear", "defaultUnit", "invoicePrefix", "nextInvoiceSeq",
+        "purchasePrefix", "nextPurchaseSeq", "allowNegativeStock",
+        "defaultMaterialsSeeded", "logoLocalPath", "operatorName",
+        "requireAdminPin", "adminPin", "languageCode", "createdAt", "updatedAt"
+      ]
+    },
+    "Material": {
+      "title": "Material",
+      "description": "Saleable crusher plant construction material with separate stock and costing.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string", "enum": ["Cement", "Sand & Aggregate", "Blocks", "Steel & Other"] },
+        "specification": { "type": "string" },
+        "unit": { "type": "string" },
+        "purchaseRate": { "type": "number" },
+        "saleRate": { "type": "number" },
+        "avgCost": { "type": "number" },
+        "currentStock": { "type": "number" },
+        "minStockAlert": { "type": "number" },
+        "customItem": { "type": "boolean" },
+        "archived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "name", "category", "specification", "unit",
+        "purchaseRate", "saleRate", "avgCost", "currentStock",
+        "minStockAlert", "customItem", "archived", "createdAt", "updatedAt"
+      ]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Customer ledger account with opening and outstanding receivable balance.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "openingBalance": { "type": "number" },
+        "currentBalance": { "type": "number" },
+        "notes": { "type": "string" },
+        "archived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "name", "phone", "address", "openingBalance",
+        "currentBalance", "notes", "archived", "createdAt", "updatedAt"
+      ]
+    },
+    "Supplier": {
+      "title": "Supplier",
+      "description": "Supplier ledger account with opening and outstanding payable balance.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "openingBalance": { "type": "number" },
+        "currentBalance": { "type": "number" },
+        "notes": { "type": "string" },
+        "archived": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "name", "phone", "address", "openingBalance",
+        "currentBalance", "notes", "archived", "createdAt", "updatedAt"
+      ]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Confirmed or corrected sale invoice with line items, COGS, and balance.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "invoiceNumber": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "transactionDateMillis": { "type": "integer" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "remainingBalance": { "type": "number" },
+        "totalCogs": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "Bank Transfer", "Cheque", "Credit"] },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["CONFIRMED", "CORRECTED", "VOID"] },
+        "revision": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "invoiceNumber", "customerId", "customerName", "customerPhone",
+        "transactionDateMillis", "items", "subtotal", "discount", "grandTotal",
+        "paidAmount", "remainingBalance", "totalCogs", "paymentMethod", "notes",
+        "status", "revision", "createdAt", "updatedAt"
+      ]
+    },
+    "Purchase": {
+      "title": "Purchase",
+      "description": "Confirmed or corrected purchase voucher with line items and supplier payable.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "voucherNumber": { "type": "string" },
+        "supplierId": { "type": "string" },
+        "supplierName": { "type": "string" },
+        "supplierPhone": { "type": "string" },
+        "transactionDateMillis": { "type": "integer" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "paidAmount": { "type": "number" },
+        "remainingBalance": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "Bank Transfer", "Cheque", "Credit"] },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["CONFIRMED", "CORRECTED", "VOID"] },
+        "revision": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "voucherNumber", "supplierId", "supplierName", "supplierPhone",
+        "transactionDateMillis", "items", "subtotal", "discount", "grandTotal",
+        "paidAmount", "remainingBalance", "paymentMethod", "notes",
+        "status", "revision", "createdAt", "updatedAt"
+      ]
+    },
+    "PartyPayment": {
+      "title": "PartyPayment",
+      "description": "Customer recovery or supplier payment ledger entry.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "partyType": { "type": "string", "enum": ["CUSTOMER", "SUPPLIER"] },
+        "partyId": { "type": "string" },
+        "partyName": { "type": "string" },
+        "entryType": { "type": "string", "enum": ["RECOVERY", "PAYMENT", "DEBIT_ADJUSTMENT", "CREDIT_ADJUSTMENT"] },
+        "amount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "Bank Transfer", "Cheque", "Adjustment"] },
+        "referenceNumber": { "type": "string" },
+        "notes": { "type": "string" },
+        "transactionDateMillis": { "type": "integer" },
+        "status": { "type": "string", "enum": ["CONFIRMED", "CORRECTED", "VOID"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "partyType", "partyId", "partyName", "entryType", "amount",
+        "paymentMethod", "referenceNumber", "notes", "transactionDateMillis",
+        "status", "createdAt", "updatedAt"
+      ]
+    },
+    "Expense": {
+      "title": "Expense",
+      "description": "Operating expense record (never modifies material stock).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "category": { "type": "string", "enum": ["Diesel", "Labour", "Salary", "Electricity", "Transport", "Machine Maintenance", "Machine Repairing", "Other Expenses"] },
+        "title": { "type": "string" },
+        "amount": { "type": "number" },
+        "paymentMethod": { "type": "string", "enum": ["Cash", "Bank Transfer", "Cheque"] },
+        "paidTo": { "type": "string" },
+        "notes": { "type": "string" },
+        "transactionDateMillis": { "type": "integer" },
+        "status": { "type": "string", "enum": ["CONFIRMED", "CORRECTED", "VOID"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "category", "title", "amount", "paymentMethod", "paidTo",
+        "notes", "transactionDateMillis", "status", "createdAt", "updatedAt"
+      ]
+    },
+    "StockMovement": {
+      "title": "StockMovement",
+      "description": "Append-only stock movement history for audit and valuation.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "materialId": { "type": "string" },
+        "materialName": { "type": "string" },
+        "movementType": { "type": "string", "enum": ["PURCHASE_IN", "SALE_OUT", "ADJUSTMENT_IN", "ADJUSTMENT_OUT", "CORRECTION_DELTA", "VOID_REVERSAL"] },
+        "quantityDelta": { "type": "number" },
+        "balanceAfter": { "type": "number" },
+        "unit": { "type": "string" },
+        "referenceId": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "reason": { "type": "string" },
+        "transactionDateMillis": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "materialId", "materialName", "movementType", "quantityDelta",
+        "balanceAfter", "unit", "referenceId", "referenceNumber", "reason",
+        "transactionDateMillis", "createdAt", "updatedAt"
+      ]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "Immutable financial correction and adjustment audit log.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "entityType": { "type": "string", "enum": ["SALE", "PURCHASE", "EXPENSE", "PAYMENT", "STOCK", "MATERIAL", "SETTINGS"] },
+        "entityId": { "type": "string" },
+        "referenceNumber": { "type": "string" },
+        "action": { "type": "string", "enum": ["CREATE", "CORRECT", "VOID", "ADJUST", "RESTORE"] },
+        "reason": { "type": "string" },
+        "beforeSummary": { "type": "string" },
+        "afterSummary": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId", "entityType", "entityId", "referenceNumber", "action",
+        "reason", "beforeSummary", "afterSummary", "createdAt", "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/business_settings/{settingId}": {
+      "schema": { "$ref": "#/entities/BusinessSettings" },
+      "description": "Owner-scoped business configuration."
+    },
+    "/users/{userId}/materials/{materialId}": {
+      "schema": { "$ref": "#/entities/Material" },
+      "description": "Owner-scoped saleable materials and stock levels."
+    },
+    "/users/{userId}/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Owner-scoped customer accounts."
+    },
+    "/users/{userId}/suppliers/{supplierId}": {
+      "schema": { "$ref": "#/entities/Supplier" },
+      "description": "Owner-scoped supplier accounts."
+    },
+    "/users/{userId}/sales/{saleId}": {
+      "schema": { "$ref": "#/entities/Sale" },
+      "description": "Owner-scoped sales invoices."
+    },
+    "/users/{userId}/purchases/{purchaseId}": {
+      "schema": { "$ref": "#/entities/Purchase" },
+      "description": "Owner-scoped purchase vouchers."
+    },
+    "/users/{userId}/party_payments/{paymentId}": {
+      "schema": { "$ref": "#/entities/PartyPayment" },
+      "description": "Owner-scoped customer recoveries and supplier payments."
+    },
+    "/users/{userId}/expenses/{expenseId}": {
+      "schema": { "$ref": "#/entities/Expense" },
+      "description": "Owner-scoped operating expenses."
+    },
+    "/users/{userId}/stock_movements/{movementId}": {
+      "schema": { "$ref": "#/entities/StockMovement" },
+      "description": "Owner-scoped append-only stock movement ledger."
+    },
+    "/users/{userId}/audit_logs/{logId}": {
+      "schema": { "$ref": "#/entities/AuditLog" },
+      "description": "Owner-scoped immutable audit history."
+    }
+  }
+}
